@@ -30,11 +30,8 @@ Tên Bài:IP Header
 -----  
 ### 1.IP Header?  
 **Internet Protocol (IP) là một giao thức liên mạng hoạt động ở tầng Network trong mô hình OSI.** IP quy định cách thức định địa chỉ các máy tính và cách thức chuyển tải các gói tin qua một liên mạng. IP được đặc tả trong bảng báo cáo kỹ thuật có tên **Request For Comments (RFC)**. IP có hai chức năng chính: cung cấp dịch vụ truyền tải các gói tin qua một liên mạng, phân mảnh và hợp lại các gói tin. Các gói dữ liệu xuất phát từ tầng Application, đến tầng Network được thêm vào một cấu trúc IP Header. Gói dữ liệu sau khi được thêm vào cấu trúc IP Header thì được gọi là IP Diagram (Packet). *Hiện nay, có hai phiên bản IP là IP Version 4 (IPv4) và IP Version 6 (IPv6), do đó có 2 cấu trúc tương ứng là IP Header Version 4 và IP header Version 6.*
-- **IPv4:** gồm 12 trường bắt buộc với tổng chiều dài là 20 byte (không tính các trường Options và Data).   
-
-![img](http://media.techtarget.com/digitalguide/images/Misc/100504_cisco_figure_3_12b.gif)  
-
-
+- **IPv4:** gồm 12 trường bắt buộc với tổng chiều dài là 20 byte (không tính các trường Options và Data).     
+![img](http://media.techtarget.com/digitalguide/images/Misc/100504_cisco_figure_3_12b.gif)   
   - **Version (4 bit):** Chỉ ra phiên bản IP đang được dùng là IPv4 (0100). Nếu trường này khác với phiên bản IP của thiết bị nhận, thiết bị nhận sẽ từ chối và loại bỏ các gói tin này. Bằng cách nhìn vào số phiên bản, Router có thể xác định phần còn lại của IP Datagram.  
   - **IP Header Length (IHL) (4 bit):** Chỉ ra chiều dài của header, mỗi đơn vị là 1 word, mỗi word = 32 bit = 4 byte. Ở đây trường IP Header Length có 4 bit nên có 2^4 = 16 word = 16 x 4byte = 64 byte nên chiều dài header tối đa là 64 byte. Bình thường Hearder dài 20 byte. Đây là chiều dài của tất cả các thông tin Header.  
   - **Type Of Services (TOS) (8 bit):** Chỉ ra cách thức xử lý gói dữ liệu, có độ ưu tiên hay không, độ trễ cho phép của gói dữ liệu. Trường này thường được dùng để thực hiện quản lý chất lượng dịch vụ mạng.  
@@ -75,49 +72,40 @@ Tên Bài:IP Header
         => Vậy dải địa chỉ lớp C bắt đầu từ 192.x.x.x đến 223.x.x.x  
 **Ngoài ra còn có địa chỉ lớp D (224.x.x.x – 239.x.x.x) sẽ nói tới ở phần sau và lớp E (240.x.x.x – 254.x.x.x) dùng để thí nghiệm và nghiên cứu.**  
 ### 2.Các loại địa chỉ IP?  
-
-
-
-
-**Địa chỉ Unicast**    
-*Khi bạn muốn gửi gói tin đến một máy tính cụ thể, khi đó địa chỉ để bạn gửi tới sẽ là một địa chỉ unicast. Đây đơn giản chỉ là địa chỉ IP của một thiết bị nào đó trong cùng hoặc mạng cục bộ khác.*   
-**Địa chỉ Multicast**  
-- Trường hợp muốn gửi gói tin đến nhiều máy tính, ta không thể gửi lần lượt đến tất cả các máy được. Vì thế, địa chỉ bạn cần gửi tới trong trường hợp này sẽ là một địa chỉ Multicast, địa chỉ này đại diện cho một nhóm các thiết bị.  
-- Địa chỉ multicast này chính là các địa chỉ trong dải địa chỉ lớp D.  
-**Địa chỉ Broadcast**
-- Khi muốn gửi thông điệp đến tất cả các máy trong mạng nội bộ, đó là lúc ta cần sử dụng đến địa chỉ Broadcast. Địa chỉ Broadcast là địa chỉ có toàn bộ các bits phần host-id là 1. Khi gói tin được gửi đến địa chỉ Broadcast, thì nó sẽ được gửi tới tất cả các máy cùng mạng, tức là cùng phần net-id. Vì đại diện cho toàn bộ thiết bị trong mạng nên địa chỉ Broadcast không thể đặt được cho bất kỳ thiết bị nào.  
-**Địa chỉ mạng**  
-- Không chỉ các thiết bị mới có địa chỉ IP, mà các mạng thành phần của Internet hay mạng cục bộ cũng có một địa chỉ để xác định chính xác mạng đó. Khi tất cả các bits phần Host của một địa chỉ IP là 0, thì địa chỉ đó được gọi là địa chỉ mạng của mạng đó. Vì đại diện cho mạng nên địa chỉ mạng cũng không thể đặt được cho bất kỳ thiết bị nào.  
-**Default Gateway**
-- Như một cổng thoát hiểm, khi gói tin cần gửi đến địa chỉ không cùng mạng hiện tại, hoặc đơn giản là không biết gửi đi đâu, thì gói tin đó sẽ được gửi tới địa chỉ Default gateway, thường là một interface của Router nối trực tiếp với mạng đó. Tại đây, Router sẽ dùng các chức năng định tuyến để chuyển tiếp gói tin đi các hướng khác nhau.  
-- Default Gateway thường là địa chỉ IP có thể sử dụng đầu tiên của mạng đó.  
-**Prefix length**  
-- Là đại lượng, chỉ số bit dùng làm địa chỉ mạng. Chẳng hạn lớp C có Prefix length là 24. Với một địa chỉ IP tiêu chuẩn prefix length là giá trị sau dấu /.  
+- **Địa chỉ Unicast**    
+  - Khi bạn muốn gửi gói tin đến một máy tính cụ thể, khi đó địa chỉ để bạn gửi tới sẽ là một địa chỉ unicast. Đây đơn giản chỉ là địa chỉ IP của một thiết bị nào đó trong cùng hoặc mạng cục bộ khác.   
+- **Địa chỉ Multicast**  
+  - Trường hợp muốn gửi gói tin đến nhiều máy tính, ta không thể gửi lần lượt đến tất cả các máy được. Vì thế, địa chỉ bạn cần gửi tới trong trường hợp này sẽ là một địa chỉ Multicast, địa chỉ này đại diện cho một nhóm các thiết bị.  
+  - Địa chỉ multicast này chính là các địa chỉ trong dải địa chỉ lớp D.  
+- **Địa chỉ Broadcast**
+  - Khi muốn gửi thông điệp đến tất cả các máy trong mạng nội bộ, đó là lúc ta cần sử dụng đến địa chỉ Broadcast. Địa chỉ Broadcast là địa chỉ có toàn bộ các bits phần host-id là 1. Khi gói tin được gửi đến địa chỉ Broadcast, thì nó sẽ được gửi tới tất cả các máy cùng mạng, tức là cùng phần net-id. Vì đại diện cho toàn bộ thiết bị trong mạng nên địa chỉ Broadcast không thể đặt được cho bất kỳ thiết bị nào.  
+- **Địa chỉ mạng**  
+  - Không chỉ các thiết bị mới có địa chỉ IP, mà các mạng thành phần của Internet hay mạng cục bộ cũng có một địa chỉ để xác định chính xác mạng đó. Khi tất cả các bits phần Host của một địa chỉ IP là 0, thì địa chỉ đó được gọi là địa chỉ mạng của mạng đó. Vì đại diện cho mạng nên địa chỉ mạng cũng không thể đặt được cho bất kỳ thiết bị nào.  
+- **Default Gateway**
+  - Như một cổng thoát hiểm, khi gói tin cần gửi đến địa chỉ không cùng mạng hiện tại, hoặc đơn giản là không biết gửi đi đâu, thì gói tin đó sẽ được gửi tới địa chỉ Default gateway, thường là một interface của Router nối trực tiếp với mạng đó. Tại đây, Router sẽ dùng các chức năng định tuyến để chuyển tiếp gói tin đi các hướng khác nhau.  
+  - Default Gateway thường là địa chỉ IP có thể sử dụng đầu tiên của mạng đó.  
+- **Prefix length**  
+  - Là đại lượng, chỉ số bit dùng làm địa chỉ mạng. Chẳng hạn lớp C có Prefix length là 24. Với một địa chỉ IP tiêu chuẩn prefix length là giá trị sau dấu /.  
 ### 3.Sự giới hạn của đia chỉ IP?  
 *Số lượng địa chỉ IP là rất lớn, nhưng không phải là vô hạn. Vì vậy để bảo tồn địa chỉ IP, người ta chia địa chỉ IP ra làm 2 loại là địa chỉ public và địa chỉ private.*  
-
-**Địa chỉ public**    
-- *Là các địa chỉ độc nhất, sử dụng được trong môi trường Internet.*  
-**Địa chỉ private**    
-- *Chỉ sử dụng được trong mạng cục bộ, có thể tái sử dụng lại ở mạng cục bộ khác, nhưng trong một mạng thì vẫn phải mang giá trị duy nhất.*    
+- **Địa chỉ public**    
+  - *Là các địa chỉ độc nhất, sử dụng được trong môi trường Internet.*  
+- **Địa chỉ private**    
+  - *Chỉ sử dụng được trong mạng cục bộ, có thể tái sử dụng lại ở mạng cục bộ khác, nhưng trong một mạng thì vẫn phải mang giá trị duy nhất.*    
 ### 4.Định Nghĩa Subnet?    
-**Subnet Mask**    
-- Giá trị trần của mạng con, là giá trị thập phân tính khi tất cả các bit của prefix length bằng 1 và phần còn lại bằng 0.  
-
-
-**Cách chia Subnet**  
-- Quy tắc: 2^n > = số đường mạng   
- *Trong đó n là số bit mượn để chia IP.*  
-- Subnet mask mới = subnet mask mặc định của lớp + số bit mượn.  
-- Bước nhảy = 2^m.  
-*Trong đó m là số bit còn lại sau khi mượn. m = 32 - Số bit host mới.*  
-
-
-**VLSM**  
-- Quy Tắc: Sắp xếp số host theo thứ tự giảm dần  
-- 2^n -2 >= Số host.  
-**Trong đó n là số bit mươn. subnet mask mới = 32 -n.
-Bước nhẩy: 2^n.**
+- **Subnet Mask**    
+  - Giá trị trần của mạng con, là giá trị thập phân tính khi tất cả các bit của prefix length bằng 1 và phần còn lại bằng 0.  
+- **Cách chia Subnet**  
+  - Quy tắc: 2^n > = số đường mạng   
+  *Trong đó n là số bit mượn để chia IP.*  
+  - Subnet mask mới = subnet mask mặc định của lớp + số bit mượn.  
+  - Bước nhảy = 2^m.  
+  *Trong đó m là số bit còn lại sau khi mượn. m = 32 - Số bit host mới.*  
+- **VLSM**  
+  - Quy Tắc: Sắp xếp số host theo thứ tự giảm dần  
+  - 2^n -2 >= Số host.  
+  *Trong đó n là số bit mươn. subnet mask mới = 32 -n.
+  Bước nhẩy: 2^n.*
 
 
 
