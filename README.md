@@ -30,8 +30,11 @@ Tên Bài:IP Header
 -----  
 ### 1.IP Header?  
 **Internet Protocol (IP) là một giao thức liên mạng hoạt động ở tầng Network trong mô hình OSI.** IP quy định cách thức định địa chỉ các máy tính và cách thức chuyển tải các gói tin qua một liên mạng. IP được đặc tả trong bảng báo cáo kỹ thuật có tên **Request For Comments (RFC)**. IP có hai chức năng chính: cung cấp dịch vụ truyền tải các gói tin qua một liên mạng, phân mảnh và hợp lại các gói tin. Các gói dữ liệu xuất phát từ tầng Application, đến tầng Network được thêm vào một cấu trúc IP Header. Gói dữ liệu sau khi được thêm vào cấu trúc IP Header thì được gọi là IP Diagram (Packet). *Hiện nay, có hai phiên bản IP là IP Version 4 (IPv4) và IP Version 6 (IPv6), do đó có 2 cấu trúc tương ứng là IP Header Version 4 và IP header Version 6.*
-- **IPv4:** gồm 12 trường bắt buộc với tổng chiều dài là 20 byte (không tính các trường Options và Data).  
+- **IPv4:** gồm 12 trường bắt buộc với tổng chiều dài là 20 byte (không tính các trường Options và Data).   
+
 ![img](http://hatangmang.blogspot.com/2014/06/ip-header-va-van-e-inh-tuyen.html)  
+
+
   - **Version (4 bit):** Chỉ ra phiên bản IP đang được dùng là IPv4 (0100). Nếu trường này khác với phiên bản IP của thiết bị nhận, thiết bị nhận sẽ từ chối và loại bỏ các gói tin này. Bằng cách nhìn vào số phiên bản, Router có thể xác định phần còn lại của IP Datagram.  
   - **IP Header Length (IHL) (4 bit):** Chỉ ra chiều dài của header, mỗi đơn vị là 1 word, mỗi word = 32 bit = 4 byte. Ở đây trường IP Header Length có 4 bit nên có 2^4 = 16 word = 16 x 4byte = 64 byte nên chiều dài header tối đa là 64 byte. Bình thường Hearder dài 20 byte. Đây là chiều dài của tất cả các thông tin Header.  
   - **Type Of Services (TOS) (8 bit):** Chỉ ra cách thức xử lý gói dữ liệu, có độ ưu tiên hay không, độ trễ cho phép của gói dữ liệu. Trường này thường được dùng để thực hiện quản lý chất lượng dịch vụ mạng.  
@@ -72,6 +75,8 @@ Tên Bài:IP Header
         => Vậy dải địa chỉ lớp C bắt đầu từ 192.x.x.x đến 223.x.x.x  
 **Ngoài ra còn có địa chỉ lớp D (224.x.x.x – 239.x.x.x) sẽ nói tới ở phần sau và lớp E (240.x.x.x – 254.x.x.x) dùng để thí nghiệm và nghiên cứu.**  
 ### 2.Các loại địa chỉ IP?  
+
+
 
 
 **Địa chỉ Unicast**    
