@@ -46,3 +46,68 @@ Tên Bài:IP Header
   - **Destination IP Address (32 bit):** Chỉ ra địa chỉ IP của thiết bị sẽ nhận IP diagram (Xem cấu trúc của địa chỉ IPv4).  
   - **IP Option:** kích thước không cố định, chứa các thông tin tùy chọn như: Time stamp – thời điểm đã đi qua Router, Security – cho phép Router nhận gói dữ liệu không, nếu không thì gói sẽ bị hủy, Record Router – lưu danh sách địa chỉ IP của Router mà gói phải đi qua, Source Route – bắt buộc đi qua Router nào đó. Lúc này sẽ không cần dùng bảng định tuyến ở mỗi Router nữa.  
   - **Padding:** Các số 0 được bổ sung vào trường này để đảm bảo IP Header luôn là bội số của 32 bit.  
+ -----  
+ Tên Bài: Định dạng IP  
+ -----  
+ ### 1.Định dạng IP?  
+- Địa chỉ IP là một dải nhị phân dài 32 bit và chia thành 4 bộ 8 bit gọi là các Octet, gồm phần net-id dùng để xác định mạng mà thiết bị kết nối vào và phần host-id để xác định thiết bị của mạng đó.
+- Phân lớp địa chỉ IP: 
+  - **Lớp A**:  
+    - Địa chỉ lớp A sử dụng 1 Octet đầu tiên làm net-id, phần còn lại làm host-id. Bit đầu tiên của địa chỉ lớp A luôn là 0 nên:  
+      - Giá trị nhỏ nhất của Octet 1: 00000000 hay 0  
+      - Giá trị lớn nhất của Octet 1: 01111111 hay 127  
+      - Default subnet mask: 255.0.0.0  
+        => Vậy dải địa chỉ lớp A sẽ là từ 1.x.x.x đến 126.x.x.x  
+  - **Lớp B**:
+    - Địa chỉ lớp B sử dụng 2 Octet đầu tiên để làm net-id, 2 Octet còn lại làm host-id. 2 bits đầu tiên của địa chỉ lớp B luôn là 10 nên:  
+      - Giá trị nhỏ nhất của Octet 1: 10000000 hay 128  
+      - Giá trị lớn nhất của Octet 1: 10111111 hay 191  
+      - Default subnet mask: 255.255.0.0  
+        =>Vậy dải địa chỉ lớp B sẽ là từ 128.x.x.x đến 191.x.x.x  
+  - **Lớp C**:  
+    - Địa chỉ lớp C sử dụng 3 Octet đầu tiên để làm net-id,  Octet 4  làm host-id. 3 bits đầu tiên của địa chỉ lớp C luôn là 110 nên:  
+      - Giá trị nhỏ nhất của Octet 1: 11000000 hay 192  
+      - Giá trị lớn nhất của Octet 1: 11011111 hay 223  
+      - Default subnet mask: 255.255.255.0  
+        => Vậy dải địa chỉ lớp C bắt đầu từ 192.x.x.x đến 223.x.x.x  
+**Ngoài ra còn có địa chỉ lớp D (224.x.x.x – 239.x.x.x) sẽ nói tới ở phần sau và lớp E (240.x.x.x – 254.x.x.x) dùng để thí nghiệm và nghiên cứu.**  
+### 2.Các loại địa chỉ IP?  
+**Địa chỉ Unicast**  
+- Khi bạn muốn gửi gói tin đến một máy tính cụ thể, khi đó địa chỉ để bạn gửi tới sẽ là một địa chỉ unicast. Đây đơn giản chỉ là địa chỉ IP của một thiết bị nào đó trong cùng hoặc mạng cục bộ khác.  
+**Địa chỉ Multicast**  
+- Trường hợp muốn gửi gói tin đến nhiều máy tính, ta không thể gửi lần lượt đến tất cả các máy được. Vì thế, địa chỉ bạn cần gửi tới trong trường hợp này sẽ là một địa chỉ Multicast, địa chỉ này đại diện cho một nhóm các thiết bị.  
+- Địa chỉ multicast này chính là các địa chỉ trong dải địa chỉ lớp D.  
+**Địa chỉ Broadcast**
+- Khi muốn gửi thông điệp đến tất cả các máy trong mạng nội bộ, đó là lúc ta cần sử dụng đến địa chỉ Broadcast. Địa chỉ Broadcast là địa chỉ có toàn bộ các bits phần host-id là 1. Khi gói tin được gửi đến địa chỉ Broadcast, thì nó sẽ được gửi tới tất cả các máy cùng mạng, tức là cùng phần net-id. Vì đại diện cho toàn bộ thiết bị trong mạng nên địa chỉ Broadcast không thể đặt được cho bất kỳ thiết bị nào.  
+**Địa chỉ mạng**  
+- Không chỉ các thiết bị mới có địa chỉ IP, mà các mạng thành phần của Internet hay mạng cục bộ cũng có một địa chỉ để xác định chính xác mạng đó. Khi tất cả các bits phần Host của một địa chỉ IP là 0, thì địa chỉ đó được gọi là địa chỉ mạng của mạng đó. Vì đại diện cho mạng nên địa chỉ mạng cũng không thể đặt được cho bất kỳ thiết bị nào.  
+**Default Gateway**
+- Như một cổng thoát hiểm, khi gói tin cần gửi đến địa chỉ không cùng mạng hiện tại, hoặc đơn giản là không biết gửi đi đâu, thì gói tin đó sẽ được gửi tới địa chỉ Default gateway, thường là một interface của Router nối trực tiếp với mạng đó. Tại đây, Router sẽ dùng các chức năng định tuyến để chuyển tiếp gói tin đi các hướng khác nhau.  
+- Default Gateway thường là địa chỉ IP có thể sử dụng đầu tiên của mạng đó.  
+**Prefix length**  
+- Là đại lượng, chỉ số bit dùng làm địa chỉ mạng. Chẳng hạn lớp C có Prefix length là 24. Với một địa chỉ IP tiêu chuẩn prefix length là giá trị sau dấu /.  
+### 3.Sự giới hạn của đia chỉ IP?  
+*Số lượng địa chỉ IP là rất lớn, nhưng không phải là vô hạn. Vì vậy để bảo tồn địa chỉ IP, người ta chia địa chỉ IP ra làm 2 loại là địa chỉ public và địa chỉ private.*   
+**Địa chỉ public**  
+- *Là các địa chỉ độc nhất, sử dụng được trong môi trường Internet.*
+**Địa chỉ private**  
+- *Chỉ sử dụng được trong mạng cục bộ, có thể tái sử dụng lại ở mạng cục bộ khác, nhưng trong một mạng thì vẫn phải mang giá trị duy nhất.*  
+### 4.Định Nghĩa Subnet?  
+**Subnet Mask**  
+- Giá trị trần của mạng con, là giá trị thập phân tính khi tất cả các bit của prefix length bằng 1 và phần còn lại bằng 0.  
+**Cách chia Subnet**  
+- Quy tắc: 2^n > = số đường mạng   
+ *Trong đó n là số bit mượn để chia IP.*  
+- Subnet mask mới = subnet mask mặc định của lớp + số bit mượn.  
+- Bước nhảy = 2^m.  
+*Trong đó m là số bit còn lại sau khi mượn. m = 32 - Số bit host mới.*  
+**VLSM**  
+- Quy Tắc: Sắp xếp số host theo thứ tự giảm dần  
+- 2^n -2 >= Số host.  
+**Trong đó n là số bit mươn. subnet mask mới = 32 -n.
+Bước nhẩy: 2^n.**
+
+
+
+
+
