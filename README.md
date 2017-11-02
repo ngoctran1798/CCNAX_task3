@@ -72,7 +72,9 @@ Tên Bài:IP Header
         => Vậy dải địa chỉ lớp C bắt đầu từ 192.x.x.x đến 223.x.x.x  
 **Ngoài ra còn có địa chỉ lớp D (224.x.x.x – 239.x.x.x) sẽ nói tới ở phần sau và lớp E (240.x.x.x – 254.x.x.x) dùng để thí nghiệm và nghiên cứu.**  
 ### 2.Các loại địa chỉ IP?  
-**Địa chỉ Unicast**  
+
+
+**Địa chỉ Unicast**    
 - Khi bạn muốn gửi gói tin đến một máy tính cụ thể, khi đó địa chỉ để bạn gửi tới sẽ là một địa chỉ unicast. Đây đơn giản chỉ là địa chỉ IP của một thiết bị nào đó trong cùng hoặc mạng cục bộ khác.  
 **Địa chỉ Multicast**  
 - Trường hợp muốn gửi gói tin đến nhiều máy tính, ta không thể gửi lần lượt đến tất cả các máy được. Vì thế, địa chỉ bạn cần gửi tới trong trường hợp này sẽ là một địa chỉ Multicast, địa chỉ này đại diện cho một nhóm các thiết bị.  
@@ -87,20 +89,24 @@ Tên Bài:IP Header
 **Prefix length**  
 - Là đại lượng, chỉ số bit dùng làm địa chỉ mạng. Chẳng hạn lớp C có Prefix length là 24. Với một địa chỉ IP tiêu chuẩn prefix length là giá trị sau dấu /.  
 ### 3.Sự giới hạn của đia chỉ IP?  
-*Số lượng địa chỉ IP là rất lớn, nhưng không phải là vô hạn. Vì vậy để bảo tồn địa chỉ IP, người ta chia địa chỉ IP ra làm 2 loại là địa chỉ public và địa chỉ private.*   
-**Địa chỉ public**  
-- *Là các địa chỉ độc nhất, sử dụng được trong môi trường Internet.*
-**Địa chỉ private**  
-- *Chỉ sử dụng được trong mạng cục bộ, có thể tái sử dụng lại ở mạng cục bộ khác, nhưng trong một mạng thì vẫn phải mang giá trị duy nhất.*  
-### 4.Định Nghĩa Subnet?  
-**Subnet Mask**  
+*Số lượng địa chỉ IP là rất lớn, nhưng không phải là vô hạn. Vì vậy để bảo tồn địa chỉ IP, người ta chia địa chỉ IP ra làm 2 loại là địa chỉ public và địa chỉ private.*     
+**Địa chỉ public**    
+- *Là các địa chỉ độc nhất, sử dụng được trong môi trường Internet.*  
+**Địa chỉ private**    
+- *Chỉ sử dụng được trong mạng cục bộ, có thể tái sử dụng lại ở mạng cục bộ khác, nhưng trong một mạng thì vẫn phải mang giá trị duy nhất.*    
+### 4.Định Nghĩa Subnet?    
+**Subnet Mask**    
 - Giá trị trần của mạng con, là giá trị thập phân tính khi tất cả các bit của prefix length bằng 1 và phần còn lại bằng 0.  
+
+
 **Cách chia Subnet**  
 - Quy tắc: 2^n > = số đường mạng   
  *Trong đó n là số bit mượn để chia IP.*  
 - Subnet mask mới = subnet mask mặc định của lớp + số bit mượn.  
 - Bước nhảy = 2^m.  
 *Trong đó m là số bit còn lại sau khi mượn. m = 32 - Số bit host mới.*  
+
+
 **VLSM**  
 - Quy Tắc: Sắp xếp số host theo thứ tự giảm dần  
 - 2^n -2 >= Số host.  
