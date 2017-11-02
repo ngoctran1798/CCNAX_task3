@@ -32,7 +32,7 @@ Tên Bài:IP Header
 **Internet Protocol (IP) là một giao thức liên mạng hoạt động ở tầng Network trong mô hình OSI.** IP quy định cách thức định địa chỉ các máy tính và cách thức chuyển tải các gói tin qua một liên mạng. IP được đặc tả trong bảng báo cáo kỹ thuật có tên **Request For Comments (RFC)**. IP có hai chức năng chính: cung cấp dịch vụ truyền tải các gói tin qua một liên mạng, phân mảnh và hợp lại các gói tin. Các gói dữ liệu xuất phát từ tầng Application, đến tầng Network được thêm vào một cấu trúc IP Header. Gói dữ liệu sau khi được thêm vào cấu trúc IP Header thì được gọi là IP Diagram (Packet). *Hiện nay, có hai phiên bản IP là IP Version 4 (IPv4) và IP Version 6 (IPv6), do đó có 2 cấu trúc tương ứng là IP Header Version 4 và IP header Version 6.*
 - **IPv4:** gồm 12 trường bắt buộc với tổng chiều dài là 20 byte (không tính các trường Options và Data).   
 
-![img](http://hatangmang.blogspot.com/2014/06/ip-header-va-van-e-inh-tuyen.html)  
+![img](http://media.techtarget.com/digitalguide/images/Misc/100504_cisco_figure_3_12b.gif)  
 
 
   - **Version (4 bit):** Chỉ ra phiên bản IP đang được dùng là IPv4 (0100). Nếu trường này khác với phiên bản IP của thiết bị nhận, thiết bị nhận sẽ từ chối và loại bỏ các gói tin này. Bằng cách nhìn vào số phiên bản, Router có thể xác định phần còn lại của IP Datagram.  
@@ -80,7 +80,7 @@ Tên Bài:IP Header
 
 
 **Địa chỉ Unicast**    
-- Khi bạn muốn gửi gói tin đến một máy tính cụ thể, khi đó địa chỉ để bạn gửi tới sẽ là một địa chỉ unicast. Đây đơn giản chỉ là địa chỉ IP của một thiết bị nào đó trong cùng hoặc mạng cục bộ khác.  
+*Khi bạn muốn gửi gói tin đến một máy tính cụ thể, khi đó địa chỉ để bạn gửi tới sẽ là một địa chỉ unicast. Đây đơn giản chỉ là địa chỉ IP của một thiết bị nào đó trong cùng hoặc mạng cục bộ khác.*   
 **Địa chỉ Multicast**  
 - Trường hợp muốn gửi gói tin đến nhiều máy tính, ta không thể gửi lần lượt đến tất cả các máy được. Vì thế, địa chỉ bạn cần gửi tới trong trường hợp này sẽ là một địa chỉ Multicast, địa chỉ này đại diện cho một nhóm các thiết bị.  
 - Địa chỉ multicast này chính là các địa chỉ trong dải địa chỉ lớp D.  
@@ -94,7 +94,8 @@ Tên Bài:IP Header
 **Prefix length**  
 - Là đại lượng, chỉ số bit dùng làm địa chỉ mạng. Chẳng hạn lớp C có Prefix length là 24. Với một địa chỉ IP tiêu chuẩn prefix length là giá trị sau dấu /.  
 ### 3.Sự giới hạn của đia chỉ IP?  
-*Số lượng địa chỉ IP là rất lớn, nhưng không phải là vô hạn. Vì vậy để bảo tồn địa chỉ IP, người ta chia địa chỉ IP ra làm 2 loại là địa chỉ public và địa chỉ private.*     
+*Số lượng địa chỉ IP là rất lớn, nhưng không phải là vô hạn. Vì vậy để bảo tồn địa chỉ IP, người ta chia địa chỉ IP ra làm 2 loại là địa chỉ public và địa chỉ private.*  
+
 **Địa chỉ public**    
 - *Là các địa chỉ độc nhất, sử dụng được trong môi trường Internet.*  
 **Địa chỉ private**    
